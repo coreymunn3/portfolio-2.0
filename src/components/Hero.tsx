@@ -11,9 +11,47 @@ export default function Hero() {
 
       {/* Background Gradient Mesh (Optional fallback or overlay) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/30 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-500/30 rounded-full blur-[120px] animate-pulse delay-1000" />
-        <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-2000" />
+        <motion.div
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/30 rounded-full blur-[120px]"
+          animate={{
+            x: [0, 400, -200, 300, 0],
+            y: [0, 200, -100, 150, 0],
+            scale: [1, 1.2, 0.9, 1.1, 1],
+          }}
+          transition={{
+            duration: 50,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-500/30 rounded-full blur-[120px]"
+          animate={{
+            x: [0, -350, 180, -250, 0],
+            y: [0, 250, -120, 180, 0],
+            scale: [1, 1.15, 0.95, 1.05, 1],
+          }}
+          transition={{
+            duration: 50,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-blue-500/20 rounded-full blur-[100px]"
+          animate={{
+            x: [0, 280, -150, 200, 0],
+            y: [0, -200, 120, -150, 0],
+            scale: [1, 1.3, 0.85, 1.15, 1],
+          }}
+          transition={{
+            duration: 50,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
