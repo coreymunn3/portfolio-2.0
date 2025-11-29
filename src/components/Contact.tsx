@@ -1,9 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
+import { PROFILE_QUERY } from "@/sanity/lib/queries";
+import { client } from "@/sanity/lib/client";
 
 export default function Contact() {
+  const [profile, setProfile] = useState<any>(null);
+
+  // fetch the profile data from Sanity
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profileData = await client.fetch(PROFILE_QUERY);
+        setProfile(profileData);
+      } catch (error) {
+        console.error("Failed to fetch profile:", error);
+      }
+    };
+    fetchProfile();
+  }, []);
+
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
       {/* Background Glow */}
@@ -27,25 +45,29 @@ export default function Contact() {
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-10">
-            <a
-              href="mailto:hello@example.com"
-              className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
-            >
-              <Mail className="w-5 h-5" />
-              <span>hello@example.com</span>
-            </a>
+            {profile && (
+              <a
+                href={`mailto:${profile.email}`}
+                className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+              >
+                <Mail className="w-5 h-5" />
+                <span>{profile.email}</span>
+              </a>
+            )}
             <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 text-gray-400">
               <MapPin className="w-5 h-5" />
-              <span>Remote / Worldwide</span>
+              <span>Remote / Washington, DC</span>
             </div>
           </div>
 
-          <a
-            href="mailto:hello@example.com"
-            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:opacity-90 transition-opacity"
-          >
-            Say Hello
-          </a>
+          {profile && (
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              Say Hello
+            </a>
+          )}
         </motion.div>
       </div>
     </section>
