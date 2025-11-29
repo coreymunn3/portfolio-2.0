@@ -23,7 +23,7 @@ export default function Hero() {
           </h2>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             Building the <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-500 to-secondary animate-gradient-x">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-yellow-500 to-secondary animate-gradient-x">
               Future of Web
             </span>
           </h1>
