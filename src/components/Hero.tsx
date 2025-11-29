@@ -1,12 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Hero3D from "./Hero3D";
 
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background Gradient Mesh */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* 3D Background */}
+      <Hero3D />
+
+      {/* Background Gradient Mesh (Optional fallback or overlay) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/30 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-500/30 rounded-full blur-[120px] animate-pulse delay-1000" />
         <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-2000" />
