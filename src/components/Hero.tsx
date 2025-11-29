@@ -80,12 +80,12 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <a
+            {/* <a
               href="#projects"
               className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto"
             >
               View Work
-            </a>
+            </a> */}
             <a
               href="#contact"
               className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-colors w-full sm:w-auto"
