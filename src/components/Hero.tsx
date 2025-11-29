@@ -60,12 +60,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-sm md:text-base font-semibold tracking-wider text-primary uppercase mb-4">
+          <h2 className="text-sm md:text-base font-semibold tracking-wider text-secondary uppercase mb-4">
             Full Stack Developer
           </h2>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             Building the <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-yellow-500 to-secondary animate-gradient-x">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-green-500 to-secondary animate-gradient-x">
               Future of Web
             </span>
           </h1>
