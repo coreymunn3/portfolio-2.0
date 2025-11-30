@@ -28,7 +28,7 @@ export default function Navbar() {
               href="/"
               className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
             >
-              Portfolio
+              Hi, I'm Corey
             </Link>
           </div>
           <div className="hidden md:block">
