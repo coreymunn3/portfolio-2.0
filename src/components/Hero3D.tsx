@@ -9,7 +9,7 @@ function Constellation(props: any) {
   const groupRef = useRef<any>(null);
 
   const [sphere] = useState(() => {
-    const count = 6000; // Must be divisible by 3 (x, y, z for each point)
+    const count = 3000; // Reduced from 6000 for better performance
     const data = new Float32Array(count);
     const radius = 1.5;
 
@@ -89,7 +89,10 @@ function Constellation(props: any) {
 export default function Hero3D() {
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 2]} // Limit pixel ratio for better performance on high-DPI screens
+      >
         <Constellation />
       </Canvas>
     </div>

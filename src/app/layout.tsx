@@ -15,17 +15,54 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio | Full Stack Developer",
+  title: {
+    default: "Corey Munn | Full Stack Developer Portfolio",
+    template: "%s | Corey Munn",
+  },
   description:
-    "A showcase of my work as a Full Stack Developer. Built with Next.js, Tailwind CSS, and Sanity.io.",
+    "Full Stack Developer specializing in React, Next.js, and modern web technologies. View my portfolio of projects and get in touch for opportunities.",
   keywords: [
-    "Developer",
+    "Corey Munn",
+    "Full Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Web Developer",
+    "JavaScript Developer",
+    "TypeScript",
     "Portfolio",
-    "Full Stack",
-    "Next.js",
-    "React",
-    "Web Development",
+    "Software Engineer",
+    "Frontend Developer",
+    "Backend Developer",
   ],
+  authors: [{ name: "Corey Munn" }],
+  creator: "Corey Munn",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://coreymunn.com",
+    title: "Corey Munn | Full Stack Developer Portfolio",
+    description:
+      "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    siteName: "Corey Munn Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Corey Munn | Full Stack Developer Portfolio",
+    description:
+      "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    creator: "@yourhandle",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

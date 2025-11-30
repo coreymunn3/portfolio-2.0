@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
 
-// Revalidate every 60 seconds
+// Revalidate every 60 seconds - page will check for new content from Sanity
 export const revalidate = 60;
 
 export default async function About() {
