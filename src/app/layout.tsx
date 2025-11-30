@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Corey Munn | Full Stack Developer Portfolio",
+    default: "Hi, I'm Corey | Full Stack Developer",
     template: "%s | Corey Munn",
   },
   description:
-    "Full Stack Developer specializing in React, Next.js, and modern web technologies. View my portfolio of projects and get in touch for opportunities.",
+    "Hi, I'm Corey Munn, a Full Stack Developer specializing in React, Next.js, and modern web technologies. Let's build something amazing together.",
   keywords: [
     "Corey Munn",
     "Full Stack Developer",
@@ -40,16 +40,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://coreymunn.com",
-    title: "Corey Munn | Full Stack Developer Portfolio",
+    title: "Hi, I'm Corey | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
-    siteName: "Corey Munn Portfolio",
+      "Full Stack Developer specializing in React, Next.js, and modern web technologies. Let's build something amazing together.",
+    siteName: "Corey Munn",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Corey Munn | Full Stack Developer Portfolio",
+    title: "Hi, I'm Corey | Full Stack Developer",
     description:
-      "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+      "Full Stack Developer specializing in React, Next.js, and modern web technologies. Let's build something amazing together.",
     creator: "@yourhandle",
   },
   robots: {
