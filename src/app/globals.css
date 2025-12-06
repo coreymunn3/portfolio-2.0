@@ -37,3 +37,8 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+/* Radial Gradient Utility */
+.bg-gradient-radial {
+  background-image: radial-gradient(circle, var(--tw-gradient-stops));
+}
