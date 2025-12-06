@@ -1,15 +1,33 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 
-function Constellation(props: any) {
+// Hook to detect mobile devices
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
+function Constellation({ isMobile }: { isMobile: boolean }) {
   const ref = useRef<any>(null);
   const groupRef = useRef<any>(null);
 
   const [sphere] = useState(() => {
-    const count = 3000; // Reduced from 6000 for better performance
+    // Reduce particle count on mobile for better performance
+    const count = isMobile ? 1200 : 3000;
     const data = new Float32Array(count);
     const radius = 1.5;
 
@@ -48,8 +66,8 @@ function Constellation(props: any) {
       ref.current.rotation.y -= delta / 15;
     }
 
-    // Mouse interaction on the containing group
-    if (groupRef.current) {
+    // Mouse interaction on the containing group (desktop only)
+    if (groupRef.current && !isMobile) {
       // Lerp towards mouse position
       // state.pointer.x/y are -1 to 1
       // We want a subtle tilt, so we multiply by a small factor (e.g. 0.1)
@@ -67,17 +85,11 @@ function Constellation(props: any) {
 
   return (
     <group ref={groupRef} rotation={[0, 0, Math.PI / 4]}>
-      <Points
-        ref={ref}
-        positions={sphere}
-        stride={3}
-        frustumCulled={false}
-        {...props}
-      >
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
           color="#8b5cf6"
-          size={0.005}
+          size={isMobile ? 0.004 : 0.005}
           sizeAttenuation={true}
           depthWrite={false}
         />
@@ -87,13 +99,16 @@ function Constellation(props: any) {
 }
 
 export default function Hero3D() {
+  const isMobile = useIsMobile();
+
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
         camera={{ position: [0, 0, 1] }}
-        dpr={[1, 2]} // Limit pixel ratio for better performance on high-DPI screens
+        dpr={isMobile ? [1, 1.5] : [1, 2]} // Lower DPR on mobile for better performance
+        performance={{ min: 0.5 }} // Allow quality degradation if needed
       >
-        <Constellation />
+        <Constellation isMobile={isMobile} />
       </Canvas>
     </div>
   );

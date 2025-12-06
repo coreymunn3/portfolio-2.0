@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import Hero3D from "./Hero3D";
 
 export default function Hero() {
+  // Detect mobile for optimized animations
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const animationDuration = isMobile ? 30 : 50;
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* 3D Background */}
@@ -19,7 +23,7 @@ export default function Hero() {
             scale: [1, 1.2, 0.9, 1.1, 1],
           }}
           transition={{
-            duration: 50,
+            duration: animationDuration,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -32,7 +36,7 @@ export default function Hero() {
             scale: [1, 1.15, 0.95, 1.05, 1],
           }}
           transition={{
-            duration: 50,
+            duration: animationDuration,
             repeat: Infinity,
             ease: "easeInOut",
             delay: 1,
@@ -46,7 +50,7 @@ export default function Hero() {
             scale: [1, 1.3, 0.85, 1.15, 1],
           }}
           transition={{
-            duration: 50,
+            duration: animationDuration,
             repeat: Infinity,
             ease: "easeInOut",
             delay: 2,
