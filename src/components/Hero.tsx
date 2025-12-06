@@ -1,63 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Hero3D from "./Hero3D";
+import { ImageIcon } from "lucide-react";
 
 export default function Hero() {
-  // Detect mobile for optimized animations
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const animationDuration = isMobile ? 30 : 50;
+  // Proper mobile detection with React hooks to avoid hydration issues
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* 3D Background */}
-      <Hero3D />
-
-      {/* Background Gradient Mesh (Optional fallback or overlay) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
-        <motion.div
-          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-500/30 rounded-full blur-[120px]"
-          animate={{
-            x: [0, 400, -200, 300, 0],
-            y: [0, 200, -100, 150, 0],
-            scale: [1, 1.2, 0.9, 1.1, 1],
-          }}
-          transition={{
-            duration: animationDuration,
-            repeat: Infinity,
-            ease: "easeInOut",
+      {/* Milky Way Background Image - Used on both mobile and desktop */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/milky_way.jpg')",
           }}
         />
-        <motion.div
-          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-500/30 rounded-full blur-[120px]"
-          animate={{
-            x: [0, -350, 180, -250, 0],
-            y: [0, 250, -120, 180, 0],
-            scale: [1, 1.15, 0.95, 1.05, 1],
-          }}
-          transition={{
-            duration: animationDuration,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-blue-500/20 rounded-full blur-[100px]"
-          animate={{
-            x: [0, 280, -150, 200, 0],
-            y: [0, -200, 120, -150, 0],
-            scale: [1, 1.3, 0.85, 1.15, 1],
-          }}
-          transition={{
-            duration: animationDuration,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
+        {/* Dark overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
+      {/* photo credit */}
+      <div className="absolute bottom-0 left-0 p-4 z-10 w-full flex items-center justify-center gap-2 text-gray-600 text-xs md:text-sm">
+        <ImageIcon className="h-4 w-4 " />
+        <span>
+          Photo by{" "}
+          <a href="https://unsplash.com/@freedomstudios?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Graham Holtshausen
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/photos/milky-way-galaxy-wallpaper-fUnfEz3VLv4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+            Unsplash
+          </a>
+        </span>
+      </div>
+
+      {/* 3D Constellation Animation - Desktop only, layered on top of the image */}
+      {!isMobile && <Hero3D />}
+
+      {/* Bottom Fade Gradient - Smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-black z-[5]" />
+
+      {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +70,7 @@ export default function Hero() {
               Future of Web
             </span>
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
+          <p className="mt-4 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10">
             I craft beautiful, high-performance websites and applications that
             leave a lasting impression.
           </p>
@@ -92,7 +89,7 @@ export default function Hero() {
             </a> */}
             <a
               href="#contact"
-              className="px-8 py-4 rounded-full border border-white/20 hover:bg-white/10 transition-colors w-full sm:w-auto"
+              className="px-8 py-4 rounded-full border border-white/50 hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               Contact Me
             </a>
@@ -102,7 +99,7 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-15 z-5 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
