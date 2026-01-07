@@ -64,7 +64,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className={`grid grid-cols-1 ${projects.length > 1 && "md:grid-cols-2"} gap-8`}
         >
           {projects.map((project) => (
             <motion.div
@@ -75,7 +75,7 @@ export default function Projects() {
               <div className="relative aspect-video overflow-hidden">
                 {project.image && (
                   <Image
-                    src={urlFor(project.image).width(800).height(600).url()}
+                    src={urlFor(project.image).width(1000).height(800).url()}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
