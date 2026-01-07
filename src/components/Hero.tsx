@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Hero3D from "./Hero3D";
 import { ImageIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 
 export default function Hero() {
   // Proper mobile detection with React hooks to avoid hydration issues
@@ -81,17 +82,21 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            {/* <a
-              href="#projects"
-              className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto"
-            >
-              View Work
-            </a> */}
             <a
               href="#contact"
-              className="px-8 py-4 rounded-full border border-white/50 hover:bg-white/10 transition-colors w-full sm:w-auto"
+              className="px-8 py-4 rounded-full  bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto"
             >
               Contact Me
+            </a>
+            <a
+              href="https://github.com/coreymunn3"
+              target="_blank"
+              className="px-8 py-4 rounded-full bg-transparent text-white font-semibold border border-gray-200 transition-colors w-full sm:w-auto"
+            >
+              <div className="flex items-center space-x-2">
+                <GithubIcon className="h-6 w-6" />
+                <span>Check out my Github</span>
+              </div>
             </a>
           </motion.div>
         </motion.div>
